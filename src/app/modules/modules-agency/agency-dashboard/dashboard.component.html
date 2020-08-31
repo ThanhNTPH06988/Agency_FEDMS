@@ -1,0 +1,227 @@
+<ng-container>
+    <br>
+    <h4 class="mb-4 text-muted">Tổng Quan </h4>
+
+    <div class="row">
+
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card border-0 rounded-0">
+                <div class="card-body">
+                    <div class="card-innerBody d-flex align-items-center">
+                        <div class="card-icon text-light">
+                            <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                        </div>
+                        <div class="ml-auto">
+                            <p class="card-label text-right text-muted">Tổng Giao Dịch</p>
+                            <h4 class="card-text text-right ">6.980.886 vnđ</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer d-flex ">
+                    <small class="text-muted">Kể từ tháng trước</small>
+                    <small class="text-success ml-auto">
+        <i class="fa fa-caret-up" aria-hidden="true"></i>
+        5,35%
+      </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card border-0 rounded-0">
+                <div class="card-body">
+                    <div class="card-innerBody d-flex align-items-center">
+                        <div class="card-icon text-light">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        </div>
+                        <div class="ml-auto">
+                            <p class="card-label text-right text-muted">Đơn Hàng</p>
+                            <h4 class="card-text text-right ">2,200</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer d-flex ">
+                    <small class="text-muted">Kể từ tháng trước</small>
+
+                    <small class="text-success ml-auto">
+        <i class="fa fa-caret-up" aria-hidden="true"></i>
+        8,66%
+      </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card border-0 rounded-0">
+                <div class="card-body">
+                    <div class="card-innerBody d-flex align-items-center">
+                        <div class="card-icon text-light">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                        </div>
+                        <div class="ml-auto">
+                            <p class="card-label text-right text-muted">Khách Hàng</p>
+                            <h4 class="card-text text-right ">702,258</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer d-flex ">
+                    <small class="text-muted">Kể từ tháng trước</small>
+
+                    <small class="text-danger ml-auto">
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+        2,81%
+      </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card border-0 rounded-0">
+                <div class="card-body">
+                    <div class="card-innerBody d-flex align-items-center">
+                        <div class="card-icon text-light">
+                            <i class="fa fa-heartbeat" aria-hidden="true"></i>
+                        </div>
+                        <div class="ml-auto">
+                            <p class="card-label text-right text-muted">Nhân Viên</p>
+                            <h4 class="card-text text-right "> 268</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer d-flex ">
+                    <small class="text-muted">Kể từ tháng trước</small>
+
+                    <small class="text-success ml-auto">
+        <i class="fa fa-caret-up" aria-hidden="true"></i>
+        1,74%
+      </small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-12 col-xl-6 mb-4">
+            <div class="card border-0 rounded-0">
+                <div class="card-title mb-1 p-3 d-flex">
+                    <h6>Doanh Thu</h6>
+                    <a class="btn ml-auto p-0 text-lightning"> <i class="fas fa-ellipsis-h"></i> </a>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative;">
+                        <canvas id="chart-line" width="2" height="1"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-6 mb-4">
+            <div class="card border-0 rounded-0">
+                <div class="card-title mb-1 p-3 d-flex">
+                    <h6>Sản Phẩm Bán Chạy</h6>
+                    <a class="btn ml-auto p-0 text-lightning"> <i class="fas fa-ellipsis-h"></i> </a>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative;">
+                        <canvas id="chart-bar" width="2" height="1"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-4 mb-4 align-items-stretch">
+            <div class="card h-100 border-0 rounded-0">
+                <div class="card-title mb-1 p-3 d-flex">
+                    <h6>Sản Phẩm</h6>
+                    <a class="btn ml-auto p-0 text-lightning"> <i class="fas fa-ellipsis-h"></i> </a>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container d-flex h-100 align-items-center justify-content-center" style="position: relative;">
+                        <canvas id="chart-doughnut" style="height:100%"></canvas>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="legend d-flex just">
+                        <div class="flex-fill text-center"><span class="d-inline-block rounded-circle mr-2" style="background: #5b6582;"></span><small>Hiện Tại</small></div>
+                        <div class="flex-fill text-center"><span class="d-inline-block rounded-circle mr-2" style="background: #98a4c7;"></span><small>Nhập Mới</small></div>
+                        <div class="flex-fill text-center"><span class="d-inline-block rounded-circle mr-2" style="background: #36a2eb;"></span><small>Đã Bán</small></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-8 mb-4 align-items-stretch">
+            <div class="card h-100 border-0 rounded-0">
+                <div class="card-title mb-1 p-3 d-flex">
+                    <h6>Bảng Kế Hoạch</h6>
+                    <a class="btn ml-auto p-0 text-lightning"> <i class="fas fa-ellipsis-h"></i> </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-md">
+                        <div class="table-responsive">
+                            <table class="table ">
+                                <thead>
+                                    <tr>
+                                        <th style="width:24%;">Khách Hàng</th>
+                                        <th style="width:25%;">Đon Hàng</th>
+                                        <th style="width:20%;">Đơn Giá</th>
+                                        <th style="width:15%;">Ngày Giao</th>
+                                        <th style="width:30%;">Tiến Độ</th>
+                                        <th class="actions" style="width:5%;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="no-border-x">
+                                    <tr>
+                                        <td>Nguyễn Tiến Thành</td>
+                                        <td>Sony Xperia M4</td>
+                                        <td class="number">94.000.000 vnđ</td>
+                                        <td>23-08-2020</td>
+                                        <td class="text-success">Đã Giao Hàng</td>
+                                        <td class="actions"><a class="icon" href="#"><i class="mdi mdi-plus-circle-o"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phạm Tiến Trung</td>
+                                        <td>Apple iPhone 6</td>
+                                        <td class="number">135.000.000 vnđ</td>
+                                        <td>20-08-2020</td>
+                                        <td class="text-success">Đã Giao Hàng</td>
+                                        <td class="actions"><a class="icon" href="#"><i class="mdi mdi-plus-circle-o"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tô Tiến Thành</td>
+                                        <td>Thép Ống</td>
+                                        <td class="number">470.000.000 vnđ</td>
+                                        <td>28-08-2020</td>
+                                        <td class="text-warning">Vận Chuyển</td>
+                                        <td class="actions"><a class="icon" href="#"><i class="mdi mdi-plus-circle-o"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hồ Tuấn Anh</td>
+                                        <td>HTC One M9</td>
+                                        <td class="number">350.000.000 vnđ</td>
+                                        <td>15-09-2020</td>
+                                        <td class="text-warning">Vận Chuyển</td>
+                                        <td class="actions"><a class="icon" href="#"><i class="mdi mdi-plus-circle-o"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nguyễn Xuân Khánh</td>
+                                        <td>Sony Xperia Z5</td>
+                                        <td class="number">495.000.000 vnđ</td>
+                                        <td>19-08-2020</td>
+                                        <td class="text-danger">Đã Huỷ</td>
+                                        <td class="actions"><a class="icon" href="#"><i class="mdi mdi-plus-circle-o"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</ng-container>

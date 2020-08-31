@@ -1,0 +1,60 @@
+<div mat-dialog-title class="dialog-title">
+    <span>
+        <strong class="text-muted" style="font-size: 18px;">Chi tiết đơn hàng:  </strong>
+         <strong style="font-size: 20px;">{{orderDetail.code}}</strong>
+        </span>
+    <span class="grid-action dialog-close" (click)="onClose()"><i class="far fa-times-circle"></i></span>
+</div>
+<div mat-dialog-content>
+    <div class="mat-elevation-z8 table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th class="text-center" style="width: 1%;">STT</th>
+                    <th class="text-center" style="width: 14%;">Mã sản phẩm</th>
+                    <th class="text-center" style="width: 25%;">Tên sản phẩm</th>
+                    <th class="text-center" style="width: 18%;">Loại sản phẩm</th>
+                    <th class="text-center" style="width: 18%;">Đơn giá/ĐVT</th>
+                    <th class="text-center" style="width: 12%;">Số lượng</th>
+                    <th class="text-center" style="width: 12%;">Thành Tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of orderDetail.requestorderproductdetails_set ;index as i">
+                    <td class="text-center">{{i+1}}</td>
+                    <td class="text-center">{{item.product.code}}</td>
+                    <td>{{item.product.name}}</td>
+                    <td>{{item.product.product_type.product_type}}</td>
+                    <td class="text-right">{{item.negotiated_price |currency :' '}}<sup>(vnđ)</sup>/{{item.product.product_unit_type.unit_type}}</td>
+                    <td class="text-right">{{item.amount}}</td>
+                    <td class="text-right">{{item.negotiated_price * item.amount | currency : ' ':'symbol':'3.0'}}<sup>(vnđ)</sup></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="text-center">
+                        <h6></h6>
+                        <span>
+                        <strong class="text-muted" style="font-size: 16px;">Ngày tạo đơn:  </strong>
+                         <strong style="font-size: 20px;">{{orderDetail.created_at | date :'hh:mm a, dd/MM/yyyy'}}</strong>
+                        </span>
+                    </td>
+                    <td colspan="2" class="text-center">
+                        <h6></h6>
+                        <span>
+                        <strong class="text-muted" style="font-size: 16px;">Tổng hoá đơn:  </strong>
+                         <strong style="font-size: 20px;">{{orderDetail.bill_value | currency : ' ':'symbol':'3.0'}}<sup>(vnđ)</sup></strong>
+                        </span>
+                    </td>
+                    <td colspan="2" class="text-right">
+                        <h6></h6>
+                        <h5 class="text-center" [ngStyle]="{'color':orderDetail.approved === true ? 'darkgreen' : 'darkorange'}">{{orderDetail.approved ? 'Đã Tiếp Nhận đơn' : 'Chờ duyệt đơn'}}</h5>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+</div>
+<!-- <mat-dialog-actions align='center'>
+    <button mat-raised-button color="warn" style="outline: none;" (click)="onClose()">Đóng</button>
+</mat-dialog-actions> -->
+<!-- <br> -->

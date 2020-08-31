@@ -1,0 +1,17 @@
+.dialog-title {
+    position: relative;
+    border-bottom: #dbe3e6 1px solid !important;
+    padding-bottom: 10px !important;
+}
+
+.dialog-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+}
+
+.dialog-close:hover {
+    cursor: pointer !important;
+    z-index: 9999999 !important;
+}

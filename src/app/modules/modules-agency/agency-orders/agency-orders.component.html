@@ -1,0 +1,153 @@
+<ng-container>
+    <app-loading *ngIf="loading"></app-loading>
+    <div class="row">
+        <nav aria-label="breadcrumb" class="bre-custome" role="navigation">
+            <ol class="breadcrumb breadcrumb-custom bre-background">
+                <li class="breadcrumb-item"><a routerLink="/agency/dashboard"><i class="fas fa-home"></i>&nbsp;Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><span><i class="fas fa-clipboard-list"></i>&nbsp;Quản lý đơn hàng</span></li>
+            </ol>
+        </nav>
+    </div>
+
+
+    <mat-card>
+        <div class="row mgb20">
+            <div class="col-md-12 grid-margin stretch-card frm-primary">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title card-title-custome ">Thông tin tìm kiếm</h4>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <mat-label>Mã đơn hàng</mat-label>
+                                    <input matInput placeholder="Mã đơn hàng" [(ngModel)]="orderCode">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <mat-label>Ngày tạo đơn hàng từ</mat-label>
+                                    <input matInput [matDatepicker]="dateTo" [(ngModel)]="dateTo1">
+                                    <mat-datepicker-toggle matSuffix [for]="dateTo"></mat-datepicker-toggle>
+                                    <mat-datepicker #dateTo></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <mat-label>Ngày tạo đơn hàng đến</mat-label>
+                                    <input matInput [matDatepicker]="dateFrom" [(ngModel)]="dateFrom1">
+                                    <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
+                                    <mat-datepicker #dateFrom></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <mat-form-field>
+                                    <mat-label>Trạng thái đơn hàng</mat-label>
+                                    <mat-select [(ngModel)]="status">
+                                        <mat-option *ngFor="let status of lstStatus" [value]="status.id">
+                                            {{status.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center frm-buttom">
+                            <button (click)="searchData()" mat-raised-button class="mgr5 btn-color-primary"><i class="fas fa-search"></i>&nbsp;Tìm kiếm</button>
+                            <button (click)="onDialogAdd()" mat-raised-button class="btn-color-sucess"><i class="fas fa-cart-plus"></i>&nbsp;Tạo đơn hàng</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card frm-primary">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title card-title-custome ">Kết quả tìm kiếm</h4>
+
+                        <div class="mat-elevation-z8 table-responsive">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 1%;">STT</th>
+                                        <th class="text-center">Mã đơn hàng</th>
+                                        <th class="text-center">Ngày tạo đơn</th>
+                                        <th class="text-center">Giá trị đơn hàng</th>
+                                        <th class="text-center" style="width: 18%;">Trạng thái đơn hàng</th>
+                                        <th class="text-center">Ngày hoàn thành</th>
+                                        <th class="text-center" style="width: 15%;">Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of lstRecords;index as i">
+                                        <td class="text-center">{{((page)*pageSize)+(i+1)}}</td>
+                                        <td>{{item.code}}</td>
+                                        <td class="text-center">{{item.created_at | date :'dd/MM/yyyy HH:mm:ss'}}</td>
+
+
+                                        <td class="text-right">{{item.bill_value | currency:' ':'symbol':'3.0'}} <sup>(vnđ)</sup></td>
+                                        <td class="text-center">
+                                            <span *ngIf="item.rejected === true" style="color: red;">Đơn bị từ chối</span>
+                                            <span *ngIf="item.approved === false && item.rejected === false" style="color: darkorange;">Đang chờ xử lý</span>
+                                            <ng-container *ngFor="let statusAgreed of agreedOrdersDetail">
+                                                <ng-container *ngIf="item.id == statusAgreed.request_order;else rest">
+                                                    <span *ngIf="statusAgreed.status === 0" style="color: dodgerblue;">Chờ đại lý xác nhận</span>
+                                                    <span *ngIf="statusAgreed.status === 44" style="color: darkgreen;">Đã Nhận Hàng</span>
+                                                    <span *ngIf="statusAgreed.status === 10" style="color: firebrick;">Tự huỷ đơn hàng</span>
+                                                    <span *ngIf="statusAgreed.status === 33" style="color: darkcyan;">Đã vận chuyển</span>
+                                                    <span *ngIf="statusAgreed.status === 11" style="color: mediumvioletred;">Đang vận đơn</span>
+                                                </ng-container>
+                                                <ng-template #rest>
+                                                </ng-template>
+                                            </ng-container>
+                                        </td>
+                                        <td class="text-center">
+                                            <span *ngIf="item.approved === false && item.rejected === false" style="color: darkorange;">{{item.created_at | date :'dd/MM/yyyy HH:mm:ss'}}</span>
+                                            <ng-container *ngFor="let statusAgreed of agreedOrdersDetail">
+                                                <ng-container *ngIf="item.id == statusAgreed.request_order;else rest">
+                                                    <span *ngIf="statusAgreed.status === 0" style="color: dodgerblue;">{{item.approved_at | date :'dd/MM/yyyy HH:mm:ss'}}</span>
+                                                    <span *ngIf="statusAgreed.status === 44" style="color: darkgreen;">{{statusAgreed.delivered_on | date :'dd/MM/yyyy HH:mm:ss'}}</span>
+
+                                                    <span *ngIf="statusAgreed.status === 10" style="color: firebrick;">{{statusAgreed.agency_rejected_on | date :'dd/MM/yyyy HH:mm:ss'}}</span>
+
+                                                    <span *ngIf="statusAgreed.status === 33" style="color: darkcyan;">{{statusAgreed.expected_delivery_on | date :'dd/MM/yyyy HH:mm:ss'}}</span>
+                                                    <span *ngIf="statusAgreed.status === 11" style="color: mediumvioletred;">{{statusAgreed.agency_accepted_on | date :'dd/MM/yyyy HH:mm:ss'}}</span>
+                                                </ng-container>
+                                                <ng-template #rest>
+                                                </ng-template>
+                                            </ng-container>
+                                        </td>
+                                        <td class="text-left">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="grid-action" (click)="onDialogDetail(item)" #tooltip="matTooltip" matTooltip="Xem chi tiết đơn hàng"><i class="fas fa-eye"></i></a>&nbsp;&nbsp;&nbsp;
+                                            <span class="grid-action" #tooltip="matTooltip" matTooltip="Cập nhật đơn hàng" (click)="onDialogAdd(item)" *ngIf="item.approved === false && item.rejected === false"><i class="fas fa-marker"></i></span>&nbsp;&nbsp;&nbsp;
+                                            <ng-container *ngFor="let statusAgreed of agreedOrdersDetail">
+                                                <span *ngIf="item.id == statusAgreed.request_order;else rest">
+                                              
+                                                <a class="grid-action" routerLink="/agency/accepted/{{item.id}}"  #tooltip="matTooltip" matTooltip="Duyệt đơn hàng"  > <span class="grid-action" *ngIf="item.approved === true && statusAgreed.status === 0" style="color: mediumvioletred;"><i class="fas fa-tasks"></i></span></a>&nbsp;&nbsp;&nbsp;
+
+                                                <a class="grid-action" #tooltip="matTooltip" matTooltip="Đã nhận hàng" (click)="completeAgreed(statusAgreed.id)" *ngIf="statusAgreed.status === 33" style="color: darkgreen;"><i class="fas fa-clipboard-check"></i></a>&nbsp;&nbsp;
+
+                                                </span>
+                                                <ng-template #rest>
+                                                </ng-template>
+                                            </ng-container>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="lstRecords.length==0">
+                                        <td class="text-center" colspan="6">Không có đơn hàng</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]" [length]="totalRecords" (page)="onPageChange($event)" [pageSize]="pageSize"></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</ng-container>

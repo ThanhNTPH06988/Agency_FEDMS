@@ -1,0 +1,115 @@
+table {
+    width: 100%;
+}
+
+.search-product {
+    font-size: 16px;
+    padding-top: 5px;
+    /* padding-left: 100px; */
+}
+
+.btn-close {
+    outline: none;
+    background-color: brown;
+}
+
+.form-product {
+    width: 100%;
+}
+
+.form-row {
+    margin-bottom: 15px;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.title-order-create {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #5b6582 !important;
+    height: 70px;
+    font-weight: bolder;
+}
+
+td {
+    padding-right: 8px;
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+}
+
+.menu-agency {
+    width: 100%;
+}
+
+.search-agency {
+    width: 80%;
+    margin-left: 35px;
+    font-size: 18px;
+}
+
+mat-mini-fab {
+    outline: none;
+}
+
+button {
+    outline: none;
+}
+
+.scrollit {
+    overflow-y: scroll;
+    overflow-x: initial;
+    height: 470px !important;
+}
+
+.amount {
+    border: 1px solid ređ;
+}
+
+.dialog-title {
+    position: relative;
+    border-bottom: #dbe3e6 1px solid !important;
+    padding-bottom: 10px !important;
+}
+
+.dialog-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+}
+
+.dialog-close:hover {
+    cursor: pointer !important;
+    z-index: 9999999 !important;
+}
+
+.action {
+    float: left;
+    width: 100%;
+}
+
+.action-input {
+    float: left;
+    height: 40px;
+    border-bottom: #3366ff 2px dotted;
+}
+
+.action-button {
+    float: left;
+}
+
+.action-input::-webkit-outer-spin-button,
+.action-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* Firefox */
+
+.action-input[type=number] {
+    -moz-appearance: textfield;
+}

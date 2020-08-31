@@ -1,0 +1,56 @@
+<aside class="sidebar shadow-sm">
+
+    <div class="sidebar-profile d-flex flex-column justify-content-center pt-5 pb-3">
+        <div class="picture-wrapper mb-4">
+            <div class="user-picture m-auto">
+                <img src="./assets/img/user.jpg" class="img-fluid" alt="">
+            </div>
+        </div>
+        <div class="profile-details text-center pb-4">
+            <p class="mb-0 text-uppercase name">{{ currentUser.agency[0].name }}</p>
+            <small class="text-uppercase role">{{ currentUser.agency[0].address }}</small>
+        </div>
+    </div>
+    <div class="sidebar-search pt-1 pb-1 pl-3 pr-3">
+        <input type="search" class="form-control rounded-pill" name="search" placeholder="Search ...">
+    </div>
+    <nav class="sidebar-menu pt-3 pb-3">
+        <div class="menu-header mt-3 mb-2">
+            DANH MỤC
+        </div>
+        <ul class="menu-items">
+            <li>
+                <a routerLink="/agency/dashboard" routerLinkActive="active">
+                    <i class="fa fa-home"></i>
+                    <span>Màn Hình Chính</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/agency/orders" routerLinkActive="active">
+                    <i class="fas fa-balance-scale"></i>
+                    <span>Quản Lý Đơn Hàng</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/agency/contact" routerLinkActive="active">
+                    <i class="fas fa-blender-phone"></i>
+                    <span>Liên Hệ Nam Phát</span>
+                </a>
+            </li>
+        </ul>
+        <div class="menu-header mt-4 mb-4">
+            Tương Tác
+        </div>
+        <div class="view-source mb-3 text-center">
+            <span class="grid-action side-icon"><i class="fab fa-google-plus"></i></span>&nbsp;&nbsp;&nbsp;
+            <span class="grid-action side-icon"><i class="fab fa-facebook-messenger"></i></span>&nbsp;&nbsp;&nbsp;
+            <span class="grid-action side-icon"><i class="fab fa-facebook"></i></span>
+        </div>
+        <style>
+            .side-icon {
+                font-size: 30px;
+                color: #308ee0;
+            }
+        </style>
+    </nav>
+</aside>

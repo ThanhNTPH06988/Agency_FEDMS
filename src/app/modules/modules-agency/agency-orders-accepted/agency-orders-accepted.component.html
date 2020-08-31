@@ -1,0 +1,127 @@
+<ng-container>
+    <app-loading *ngIf="loading"></app-loading>
+    <div class="row">
+        <nav aria-label="breadcrumb" class="bre-custome" role="navigation">
+            <ol class="breadcrumb breadcrumb-custom bre-background">
+                <li class="breadcrumb-item"><a routerLink="/agency/dashboard"><i class="fas fa-home"></i>&nbsp;Trang chủ</a></li>
+                <li class="breadcrumb-item"><a routerLink="/agency/orders"><i class="fas fa-clipboard-list"></i>&nbsp;Quản lý đơn hàng</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><span><i class="fas fa-tasks"></i>&nbsp;Xác nhận đơn hàng</span></li>
+            </ol>
+        </nav>
+    </div>
+
+
+    <mat-card>
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card frm-primary">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title card-title-custome ">Đơn hàng chấp thuận từ Nam Phát</h4>
+
+                        <div class="mat-elevation-z8 table-responsive">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 1%;">STT</th>
+                                        <th class="text-center" style="width: 14%;">Mã sản phẩm</th>
+                                        <th class="text-center" style="width: 22%;">Tên sản phẩm</th>
+                                        <th class="text-center" style="width: 18%;">Loại sản phẩm</th>
+                                        <th class="text-center" style="width: 18%;">Đơn giá/ĐVT</th>
+                                        <th class="text-center" style="width: 12%;">Số lượng</th>
+                                        <th class="text-center" style="width: 15%;">Thành Tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of agreedOrdersDetail.results[0].agreedorderproductdetails_set ; index as i">
+                                        <td class="text-center">{{i+1}}</td>
+                                        <td class="text-center">{{item.product.code}}</td>
+                                        <td>{{item.product.name}}</td>
+                                        <td>{{item.product.product_type.product_type}}</td>
+                                        <td class="text-right">{{item.negotiated_price |currency :' '}}<sup>(vnđ)</sup>/{{item.product.product_unit_type.unit_type}}</td>
+                                        <td class="text-right">{{item.amount}}</td>
+                                        <td class="text-right">{{item.negotiated_price * item.amount | currency : ' ':'symbol':'3.0'}}<sup>(vnđ)</sup></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-left">
+                                            <span>
+                                            <strong class="text-muted" style="font-size: 14px;">Mã đơn hàng:  </strong>
+                                             <strong style="font-size: 18px;">{{agreedOrdersDetail.results[0].code}}</strong>
+                                            </span>
+                                        </td>
+                                        <td colspan="2" class="text-center">
+                                            <h5> <strong>Tổng hoá đơn</strong></h5>
+                                        </td>
+                                        <td colspan="2" class="text-right">
+                                            <h5> <strong>{{agreedOrdersDetail.results[0].bill_value | currency : ' ':'symbol':'3.0'}}<sup>(vnđ)</sup></strong></h5>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <mat-card> -->
+        <div class="text-center mt-4 mb-4">
+            <a mat-raised-button routerLink="/agency/orders" style="color: red; margin-right: 15px !important; text-decoration: none;"><i class="fas fa-angle-double-left"></i>&nbsp;&nbsp; Quay lại</a>
+
+            <button mat-raised-button color="warn" style="outline: none;" (click)="noAccepted(agreedOrdersDetail.results[0].id)"> Từ chối &nbsp;&nbsp; <i class="far fa-angry"></i></button>
+
+            <button mat-raised-button style="background: seagreen; margin-left: 15px; color: aliceblue; outline: none;" (click)="accepted(agreedOrdersDetail.results[0].id)"> Chấp thuận &nbsp;&nbsp; <i class="fas fa-american-sign-language-interpreting"></i></button>
+        </div>
+        <!-- </mat-card> -->
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card frm-primary">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title card-title-custome ">Đơn hàng yêu cầu của Dại Lý</h4>
+
+                        <div class="mat-elevation-z8 table-responsive">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 1%;">STT</th>
+                                        <th class="text-center" style="width: 14%;">Mã sản phẩm</th>
+                                        <th class="text-center" style="width: 22%;">Tên sản phẩm</th>
+                                        <th class="text-center" style="width: 18%;">Loại sản phẩm</th>
+                                        <th class="text-center" style="width: 18%;">Đơn giá/ĐVT</th>
+                                        <th class="text-center" style="width: 12%;">Số lượng</th>
+                                        <th class="text-center" style="width: 15%;">Thành Tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of requestOrdersDetail.requestorderproductdetails_set ;index as i">
+                                        <td class="text-center">{{i+1}}</td>
+                                        <td class="text-center">{{item.product.code}}</td>
+                                        <td>{{item.product.name}}</td>
+                                        <td>{{item.product.product_type.product_type}}</td>
+                                        <td class="text-right">{{item.negotiated_price |currency :' '}}<sup>(vnđ)</sup>/{{item.product.product_unit_type.unit_type}}</td>
+                                        <td class="text-right">{{item.amount}}</td>
+                                        <td class="text-right">{{item.negotiated_price * item.amount | currency : ' ':'symbol':'3.0'}}<sup>(vnđ)</sup></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="text-left">
+                                            <span>
+                                            <strong class="text-muted" style="font-size: 14px;">Mã đơn hàng:  </strong>
+                                             <strong style="font-size: 18px;">{{requestOrdersDetail.code}}</strong>
+                                            </span>
+                                        </td>
+                                        <td colspan="2" class="text-center">
+                                            <h5> <strong>Tổng hoá đơn</strong></h5>
+                                        </td>
+                                        <td colspan="2" class="text-right">
+                                            <h5> <strong>{{requestOrdersDetail.bill_value | currency : ' ':'symbol':'3.0'}}<sup>(vnđ)</sup></strong></h5>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
+</ng-container>

@@ -1,0 +1,142 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$lightning-admin-angular-primary: mat-palette($mat-indigo);
+$lightning-admin-angular-accent: mat-palette($mat-pink, A200, A100, A400);
+// The warn palette is optional (defaults to red).
+$lightning-admin-angular-warn: mat-palette($mat-red);
+// Create the theme object (a Sass map containing all of the palettes).
+$lightning-admin-angular-theme: mat-light-theme($lightning-admin-angular-primary, $lightning-admin-angular-accent, $lightning-admin-angular-warn);
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($lightning-admin-angular-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+// $fa-font-path:"~font-awesome/fonts";
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+$hamburger-padding-x: 0px !default;
+$hamburger-padding-y: 0px !default;
+$hamburger-layer-width: 25px !default;
+$hamburger-layer-height: 2px !default;
+$hamburger-layer-spacing: 5px !default;
+$hamburger-layer-color: #9b9ea2 !default;
+$hamburger-layer-border-radius: 4px !default;
+$hamburger-hover-opacity: 0.7 !default;
+@import '~bootstrap/scss/bootstrap';
+// @import '~font-awesome/scss/font-awesome';
+// @import '~hamburgers/_sass/hamburgers/hamburgers';
+@import '~ngx-toastr/toastr-bs4-alert';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import './assets/lightning-admin';
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    padding-top: 0px;
+    font-size: 14px !important;
+}
+
+.mat-button,
+.mat-icon-button,
+.mat-stroked-button,
+.mat-flat-button {
+    outline: none !important
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+/* TamDT */
+
+.breadcrumb {
+    background-color: #5b6582;
+}
+
+.bre-custome {
+    float: left;
+    width: 100%;
+}
+
+.breadcrumb-item,
+.breadcrumb-item a {
+    color: #fff !important;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    color: #fff !important;
+}
+
+.mgb20 {
+    margin-bottom: 20px !important;
+}
+
+.mgr5 {
+    margin-right: 5px !important;
+}
+
+.btn-color-primary {
+    background-color: #308ee0 !important;
+    color: #fff !important;
+}
+
+.btn-color-sucess {
+    background-color: #009b4e !important;
+    color: #fff !important;
+}
+
+.card-title-custome {
+    border-bottom: #dbe3e6 1px solid !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 10px !important;
+    font-weight: 500;
+    color: #404852;
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+.grid-action:hover {
+    cursor: pointer;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: none !important;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
